@@ -1,8 +1,14 @@
+#for vscode
 .vscode
+
 
 #for Unity
 /Assets
+!/Assets/Scripts
 /Library
 /Logs
 /Packages
 /ProjectSettings
+/Temp
+/obj
+
