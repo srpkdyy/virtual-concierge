@@ -1,2 +1,8 @@
 .vscode
 
+#for Unity
+/Assets
+/Library
+/Logs
+/Packages
+/ProjectSettings
