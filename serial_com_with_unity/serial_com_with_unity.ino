@@ -1,19 +1,19 @@
-int touch_sns = 8;
+int touch_sensor = 8;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(touch_sns, INPUT);
+  pinMode(touch_sensor, INPUT);
   Serial.begin(19200);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int is_touching = digitalRead(touch_sns);  
+  int is_touching = digitalRead(touch_sensor);  
 
   if (Serial.available()) {
     String device = Serial.readStringUntil('\n');
   
-    if (device == "touch_sns") {
+    if (device == "touch_sensor") {
       Serial.println(is_touching);
     }
     else {

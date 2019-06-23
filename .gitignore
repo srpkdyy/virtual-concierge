@@ -3,7 +3,7 @@
 
 
 #for Unity
-/Assets
+/Assets/*
 !/Assets/Scripts
 /Library
 /Logs
@@ -11,4 +11,3 @@
 /ProjectSettings
 /Temp
 /obj
-
