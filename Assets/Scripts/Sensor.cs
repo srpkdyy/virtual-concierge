@@ -8,7 +8,7 @@ public class Sensor : MonoBehaviour
 {
     private SerialPort arduino;
 
-    private bool is_touching;
+    private bool is_touching, is_moving;
     private int temperature;
 
     private int frame_count;
@@ -28,7 +28,8 @@ public class Sensor : MonoBehaviour
         if (frame_count % 2 == 0)
         {
             StartCoroutine(GetStatusOfSensor());
-            Debug.Log(temperature);
+            //Debug.Log(temperature);
+            Debug.Log(is_moving);
         }
     }
 
@@ -36,6 +37,8 @@ public class Sensor : MonoBehaviour
     {
         arduino.Write("touch\n");
         yield return is_touching = (arduino.ReadLine() == "1");
+        arduino.Write("move\n");
+        yield return is_moving = (arduino.ReadLine() == "1");
         arduino.Write("temperature\n");
         yield return temperature = int.Parse(arduino.ReadLine());
     }
