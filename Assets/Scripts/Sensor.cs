@@ -9,17 +9,16 @@ public class Sensor : MonoBehaviour
     private SerialPort arduino;
 
     private bool is_touching;
+    private int temperature;
 
     private int frame_count;
 
     // Start is called before the first frame update
     void Start()
     {
-        arduino = new SerialPort("COM4", 19200);
+        arduino = new SerialPort("COM4", 9600);
         arduino.ReadTimeout = 250;
         arduino.Open();
-
-        frame_count = 0;
     }
 
     // Update is called once per frame
@@ -29,13 +28,15 @@ public class Sensor : MonoBehaviour
         if (frame_count % 2 == 0)
         {
             StartCoroutine(GetStatusOfSensor());
+            Debug.Log(temperature);
         }
-        Debug.Log(is_touching);
     }
 
     IEnumerator GetStatusOfSensor()
     {
-        arduino.Write("touch_sensor\n");
+        arduino.Write("touch\n");
         yield return is_touching = (arduino.ReadLine() == "1");
+        arduino.Write("temperature\n");
+        yield return temperature = int.Parse(arduino.ReadLine());
     }
 }
